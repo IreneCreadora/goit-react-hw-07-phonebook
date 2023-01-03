@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
-// import { addContact } from '../../redux/contacts/contactsSlice';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/contacts/operations';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 import { Formik } from 'formik';
 import { FormStyled, Label, Input, Button } from '../Component.styled';
@@ -14,7 +13,7 @@ import { validationSchema } from './yup-validation';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = (values, { resetForm }) => {
     if (!values) return;

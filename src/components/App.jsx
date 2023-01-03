@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/operations';
-import { getError, getIsLoading } from 'redux/selectors';
+import { fetchContacts } from 'redux/contacts/operations';
+import { selectError, selectIsLoading } from 'redux/selectors';
 
 import { Layout } from './Layout';
 
@@ -15,14 +15,14 @@ import { Container, Phonebook, Contacts, Section } from './Component.styled';
 
 export default function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   return (
     <Layout>
       <Container>
